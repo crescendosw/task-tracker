@@ -33,6 +33,13 @@ struct Task_TrackerApp: App {
                 currentNumber = "3"
             }
             .keyboardShortcut("3")
+            Divider()
+            Button("Quit") {
+
+                NSApplication.shared.terminate(nil)
+
+            }
+            .keyboardShortcut("q")
         }
     }
 }
