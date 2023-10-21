@@ -15,9 +15,6 @@ struct Task_TrackerApp: App {
     @State var currentNumber: String = "1"
     
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
         // 2
         MenuBarExtra(currentNumber, systemImage: "\(currentNumber).circle") {
             // 3
