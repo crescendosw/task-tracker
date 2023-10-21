@@ -24,12 +24,15 @@ struct Task_TrackerApp: App {
             Button("One") {
                 currentNumber = "1"
             }
+            .keyboardShortcut("1")
             Button("Two") {
                 currentNumber = "2"
             }
+            .keyboardShortcut("2")
             Button("Three") {
                 currentNumber = "3"
             }
+            .keyboardShortcut("3")
         }
     }
 }
