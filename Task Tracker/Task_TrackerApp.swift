@@ -41,7 +41,7 @@ struct Task_TrackerApp: App {
             Divider()
             Button("Open Schedule") {
                 // from "OSX Swift open URL in default browser" stack overflow
-                let url = URL(string: "https://www.google.com")!
+                let url = URL(string: "https://staging.coda.io/d/_d1yceUzNKlU")!
                 NSWorkspace.shared.open(url)
             }
             .keyboardShortcut("o")
