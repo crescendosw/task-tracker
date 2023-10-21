@@ -7,6 +7,14 @@
 
 // from https://sarunw.com/posts/swiftui-menu-bar-app/
 
+// TODO
+// [ ] Menu item to open schedule
+// [ ] Pull today's tasks from schedule
+// [ ] Flash "*** NO TASK ***" to get attention
+// [ ] Access from hewitt@coda.io account
+// [ ] Global shortcut to access menubar
+// [ ] Launch at startup
+
 import SwiftUI
 
 @main
@@ -16,7 +24,7 @@ struct Task_TrackerApp: App {
     
     var body: some Scene {
         // 2
-        MenuBarExtra(currentNumber, systemImage: "\(currentNumber).circle") {
+        MenuBarExtra("*** NO TASK ***") {
             // 3
             Button("One") {
                 currentNumber = "1"
@@ -31,10 +39,14 @@ struct Task_TrackerApp: App {
             }
             .keyboardShortcut("3")
             Divider()
+            Button("Open Schedule") {
+                // from "OSX Swift open URL in default browser" stack overflow
+                let url = URL(string: "https://www.google.com")!
+                NSWorkspace.shared.open(url)
+            }
+            .keyboardShortcut("o")
             Button("Quit") {
-
                 NSApplication.shared.terminate(nil)
-
             }
             .keyboardShortcut("q")
         }
