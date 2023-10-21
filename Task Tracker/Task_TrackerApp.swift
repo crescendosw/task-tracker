@@ -24,26 +24,19 @@
 
 import SwiftUI
 
+// super sophisticated view in menu popup: https://www.youtube.com/watch?v=v1lGPx6m__g
+
 @main
 struct Task_TrackerApp: App {
     // 1
     let docId = "1yceUzNKlU"
-    @State var currentTitle: String = getTitle()
+    @State var currentTitle: String = "*** NO TASK ***"
     @State var number = 0;
+    @State var buttons = ["hello", "goodbye"]
     
     // refresh data every 5 seconds (see .onReceive below)
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 
-    static func getTitle() -> String {
-        let codaUrl = URL(string: "https://staging.coda.io/d/_d" + "1yceUzNKlU")!
-        let task = URLSession.shared.dataTask(with: codaUrl) {(data, response, error) in
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
-        }
-        task.resume()
-        return "*** NO TASK ***"
-    }
-    
     func refresh() {
         let codaUrl = URL(string: "https://staging.coda.io/d/_d" + "1yceUzNKlU")!
         let task = URLSession.shared.dataTask(with: codaUrl) {(data, response, error) in
@@ -51,12 +44,18 @@ struct Task_TrackerApp: App {
             // print(String(data: data, encoding: .utf8)!)
             number = number + 1
             currentTitle = "foo" + String(number)
+            buttons = ["new", "old"]
         }
         task.resume()
     }
 
     var body: some Scene {
         MenuBarExtra {
+            ForEach(buttons, id: \.self) {name in
+                Button(name) {
+                    currentTitle = "Task 1"
+                }
+            }
             Button("One") {
                 currentTitle = "Task 1"
             }
